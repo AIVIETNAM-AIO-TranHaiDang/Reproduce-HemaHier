@@ -1,0 +1,3 @@
+setting: frozen
+backbone:
+  lora_rank: 0

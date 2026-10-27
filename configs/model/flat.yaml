@@ -1,0 +1,3 @@
+model:
+  name: flat
+  input: L                            # L = h_L only (linear probe)

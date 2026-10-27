@@ -1,0 +1,23 @@
+# MLLv1 (Matek et al., Blood 2021) -> HemaHier ontology.
+# Every fine class belongs to exactly one lineage (m(f)).
+# Chains list healthy maturation stages immature -> mature; only these get maturity targets pi = j / n_q.
+# Classes in a lineage but on no chain are "off-chain": valid classes, excluded from maturity losses.
+name: mll
+lineages:
+  granulocytic: [PMO, MYB, MMZ, NGB, NGS, FGC]   # FGC = faggot cell (APL), off-chain
+  erythroid: [PEB, EBO]
+  lymphoid: [LYI, LYT, PLM, HAC]                 # PLM plasma cell, HAC hairy cell: off-chain
+  eosinophil: [EOS, ABE]                         # ABE abnormal eosinophil: off-chain
+  basophil: [BAS]
+  monocytic: [MON]
+  blast: [BLA]                                   # MLL "BLA" does not specify blast lineage
+  other: [ART, NIF, OTH, KSC]                    # artefact, not identifiable, other, smudge cell
+chains:
+  neutrophil: [PMO, MYB, MMZ, NGB, NGS]
+  erythroid: [PEB, EBO]
+  lymphoid: [LYI, LYT]
+# Maturity-aware tree distance (evaluation only, never a training loss).
+# same chain: off_chain * |pi_pred - pi_true|; same lineage otherwise: off_chain; other lineage: cross_lineage.
+td:
+  off_chain: 0.5
+  cross_lineage: 1.0

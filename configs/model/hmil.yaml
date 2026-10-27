@@ -1,0 +1,6 @@
+model:
+  name: hmil
+  hidden: 1024
+  dropout: 0.1
+  coarse_weight: 1.0
+  consistency_weight: 0.1

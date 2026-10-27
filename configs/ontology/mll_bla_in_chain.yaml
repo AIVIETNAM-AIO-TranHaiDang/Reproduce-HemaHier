@@ -1,0 +1,17 @@
+# Variant: treat MLL blasts as the head of the neutrophil chain (as in the paper's Fig. 3, myeloblast -> segmented).
+name: mll_bla_in_chain
+lineages:
+  granulocytic: [BLA, PMO, MYB, MMZ, NGB, NGS, FGC]
+  erythroid: [PEB, EBO]
+  lymphoid: [LYI, LYT, PLM, HAC]
+  eosinophil: [EOS, ABE]
+  basophil: [BAS]
+  monocytic: [MON]
+  other: [ART, NIF, OTH, KSC]
+chains:
+  neutrophil: [BLA, PMO, MYB, MMZ, NGB, NGS]
+  erythroid: [PEB, EBO]
+  lymphoid: [LYI, LYT]
+td:
+  off_chain: 0.5
+  cross_lineage: 1.0

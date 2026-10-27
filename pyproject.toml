@@ -1,0 +1,32 @@
+[project]
+name = "hemahier"
+version = "0.1.0"
+description = "Reproduction of HemaHier: chain-conditioned ordinal hierarchies for bone-marrow cytology"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.2",
+    "torchvision>=0.17",
+    "timm>=1.0",
+    "omegaconf>=2.3",
+    "pyyaml",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "scipy",
+    "pillow",
+    "tqdm",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,40 @@
+seed: 0
+fold: 0
+out_dir: runs
+ontology: configs/ontology/mll.yaml
+
+data:
+  root: data/raw/mll                  # folder holding the 21 MLL class folders
+  index_csv: data/mll_index.csv       # written by scripts/prepare_mll.py (paths relative to root)
+  splits_dir: data/splits             # written by scripts/make_splits.py
+  cache_dir: data/features            # written by scripts/extract_features.py
+  use_cache: false                    # frozen setting only: train on cached features (no augmentation)
+  img_size: 224
+  num_workers: 8
+  sampler: sqrt_inv_freq              # none | sqrt_inv_freq | inv_freq  (shared by all methods)
+  rare_threshold: 1000                # classes with fewer total images count as "rare" (paper does not state)
+  subset_frac: 1.0                    # <1 for smoke tests
+
+backbone:
+  name: dinobloom_s
+  # Either a timm hub id (default mirror of DinoBloom-S) or a local Zenodo checkpoint (DinoBloom-S.pth).
+  timm_id: hf-hub:1aurent/vit_small_patch14_224.dinobloom
+  checkpoint: null
+  pretrained: true                    # false only for offline tests
+  img_size: null                      # set 224 when building an un-pretrained dinov2 arch for tests
+  mid_block: 7                        # 0-based block index for h_M (block 8 of 12)
+  lora_rank: 0                        # 0 = frozen
+  lora_alpha: 16
+  grad_checkpointing: false
+
+train:
+  epochs: 20
+  batch_size: 64
+  lr: 3.0e-4
+  weight_decay: 1.0e-4
+  warmup_epochs: 1
+  amp: true
+  eval_every: 1
+
+decode: argmax                        # argmax | product
+decode_sigma: 0.15

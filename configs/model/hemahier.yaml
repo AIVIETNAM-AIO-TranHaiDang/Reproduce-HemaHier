@@ -1,0 +1,22 @@
+model:
+  name: hemahier
+  adapter_hidden: 1536
+  adapter_dim: 1024
+  dropout: 0.1
+  chain_dim: 32
+  maturity_hidden: 96
+  factorized: true                    # phi_c(h_L), phi_d([h_L; h_M]); false -> single MLP on [h_L; h_M]
+  couple: true                        # Eq. 2 lineage-consistent posterior
+  maturity: true                      # L_m
+  ranking: true                       # L_r
+  margin: 0.1                         # delta (not stated in paper)
+  rank_reduction: mean                # mean | sum over valid pairs
+  lambda_raw: 0.1
+  lambda_c: 0.05
+  lambda_m: 0.005
+  lambda_r: 0.003
+  # staged ramp: weight = lambda * clip((epoch - start) / ramp, 0, 1)
+  start_c: 1
+  start_m: 3
+  start_r: 5
+  ramp: 2

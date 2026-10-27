@@ -1,0 +1,3 @@
+model:
+  name: flat
+  input: LM                           # linear on [h_L; h_M]

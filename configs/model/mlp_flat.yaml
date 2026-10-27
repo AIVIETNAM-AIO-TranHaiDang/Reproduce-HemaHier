@@ -1,0 +1,12 @@
+# Capacity-matched flat baseline (not in the paper): same ~5M-param MLP on [h_L; h_M], plain softmax,
+# no lineage coupling and no maturity. Separates the benefit of structure from the benefit of head capacity.
+model:
+  name: hemahier
+  adapter_hidden: 1536
+  adapter_dim: 1024
+  dropout: 0.1
+  factorized: false
+  couple: false
+  maturity: false
+  ranking: false
+  lambda_raw: 0.0

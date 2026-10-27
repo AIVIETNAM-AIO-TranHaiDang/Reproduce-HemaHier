@@ -1,0 +1,6 @@
+setting: lora
+backbone:
+  lora_rank: 16
+  grad_checkpointing: true
+model:
+  lambda_raw: 0.3                     # paper: auxiliary fine CE weight increased under adaptation
